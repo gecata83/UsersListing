@@ -1,3 +1,8 @@
+### Project environment
+This project has been build with Zend Framework 3 
+Server apache 2.4 on Ubuntu 16.04 and php 7.0 
+(php basic mods that would comply to our needs)
+
 ### To run the project
 
 Clone the git repository on your machine.
