@@ -1,0 +1,43 @@
+<div class="jumbotron">
+    <h1>Welcome to <span class="zf-green">Test Users Listing</span></h1>
+
+    <p></p>
+</div>
+
+<?php
+$threeRecordPerRow = 0;
+foreach ($usersInfo as $userInfo) {
+    if ($threeRecordPerRow == 0) {
+        echo '<div class="row record-per-row">';
+    }
+    $threeRecordPerRow += 1;
+
+?>
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <?php
+                $avatar = $userInfo->avatar;
+                if ($avatar === "0") {
+                    $avatar = "../img/rsz_256px-no_image_availablesvg.png";
+                }
+                ?>
+                <img src="<?php echo $avatar ?>" class="img-circle profile-pics" onerror="this.src='../img/rsz_404-logo.jpg'" />
+            </div>
+            <div class="panel-body">
+                <p><?php echo $this->escapeHtml($userInfo->name); ?><p>
+                <p><?php echo $this->escapeHtml($userInfo->company); ?><p>
+                <p><?php echo $this->escapeHtml($userInfo->title); ?><p>
+                <p><?php echo $this->escapeHtml($userInfo->bio); ?><p>
+            </div>
+        </div>
+    </div>
+<?php
+    if ($threeRecordPerRow > 2) {
+        $threeRecordPerRow = 0;
+        echo "</div>";
+    }
+}
+
+$a = 5;
+?>
