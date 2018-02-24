@@ -48,7 +48,7 @@ class UsersListing
      * @param int $offset
      * @return array
      */
-    public function getResult($limit = 15, $offset = 0) :array
+    public function getResult($limit = 70, $offset = 0) :array
     {
         if ($this->cache->hasItem(self::MAIN_CACHE_KEY)) {
             $jsonData = $this->cache->getItem(self::MAIN_CACHE_KEY);

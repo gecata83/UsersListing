@@ -1,7 +1,7 @@
 <div class="jumbotron">
     <h1>Welcome to <span class="zf-green">Test Users Listing</span></h1>
 
-    <p></p>
+    <p id="loadMore" data-url="<?php echo $this->url('loadMore') ?>"></p>
 </div>
 
 <?php
@@ -13,7 +13,7 @@ foreach ($usersInfo as $userInfo) {
     $threeRecordPerRow += 1;
 
 ?>
-    <div class="col-md-4">
+    <div class="col-md-4 counting-records">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <?php
@@ -22,7 +22,7 @@ foreach ($usersInfo as $userInfo) {
                     $avatar = "../img/rsz_256px-no_image_availablesvg.png";
                 }
                 ?>
-                <img src="<?php echo $avatar ?>" class="img-circle profile-pics" onerror="this.src='../img/rsz_404-logo.jpg'" />
+                <img src="<?php echo $avatar ?>" class="img-circle profile-pics" />
             </div>
             <div class="panel-body">
                 <p><?php echo $this->escapeHtml($userInfo->name); ?><p>

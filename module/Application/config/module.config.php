@@ -29,15 +29,25 @@ return [
                 ],
             ],
             'application' => [
-                'type'    => Segment::class,
+                'type'    => Literal::class,
                 'options' => [
-                    'route'    => '/application[/:action]',
+                    'route'    => '/application/index',
                     'defaults' => [
                         'controller' => Controller\IndexController::class,
                         'action'     => 'index',
                     ],
                 ],
             ],
+            'loadMore' => [
+                'type'    => Literal::class,
+                'options' => [
+                    'route'    => '/load/more',
+                    'defaults' => [
+                        'controller' => Controller\IndexController::class,
+                        'action'     => 'load-more',
+                    ],
+                ],
+            ]
         ],
     ],
     'controllers' => [
@@ -66,6 +76,9 @@ return [
         ],
         'template_path_stack' => [
             __DIR__ . '/../view',
+        ],
+        'strategies' => [
+            'ViewJsonStrategy',
         ],
     ],
 ];

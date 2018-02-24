@@ -4,6 +4,7 @@ namespace Application\Controller;
 
 use Application\Service\UsersListing;
 use Zend\Mvc\Controller\AbstractActionController;
+use Zend\View\Model\JsonModel;
 use Zend\View\Model\ViewModel;
 
 class IndexController extends AbstractActionController
@@ -34,6 +35,12 @@ class IndexController extends AbstractActionController
 
     public function loadMoreAction()
     {
+        $viewModel = new JsonModel();
+        $recordNumber = $this->params()->fromQuery("recordNumber", 0);
 
+        $usersInfo = $this->usersListingService->getResult(9, $recordNumber);
+
+        $viewModel->setVariables($usersInfo);
+        return $viewModel;
     }
 }
