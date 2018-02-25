@@ -1,3 +1,4 @@
+
 ### Project environment
 This project has been build with Zend Framework 3 
 Server apache 2.4 on Ubuntu 16.04 and php 7.0 
@@ -5,8 +6,8 @@ Server apache 2.4 on Ubuntu 16.04 and php 7.0
 
 ### To run the project
 
-Clone the git repository on your machine.
-Execute "composer.phar update" in the project main folder terminal
+Clone the git repository on your machine. "git clone https://github.com/gecata83/UsersListing.git"
+Execute "composer.phar install" in the project main folder (I have kept the lock file up to date but if something goes wrong use - ./composer.phar install)
 ### Apache setup
 
 To setup apache, setup a virtual host to point to the public/ directory of the
