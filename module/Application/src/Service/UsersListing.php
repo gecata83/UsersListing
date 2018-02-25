@@ -48,7 +48,7 @@ class UsersListing
      * @param int $offset
      * @return array
      */
-    public function getResult($limit = 70, $offset = 0) :array
+    public function getResult($limit = 72, $offset = 0) :array
     {
         if ($this->cache->hasItem(self::MAIN_CACHE_KEY)) {
             $jsonData = $this->cache->getItem(self::MAIN_CACHE_KEY);
@@ -97,7 +97,7 @@ class UsersListing
          * That is an ugly handling of this broken request. But for test purpose I think it would do the job.
          */
         if ($response->getStatusCode() >= 400) {
-            throw new \Exception("Broken Request");
+            throw new \Exception("Broken Request: " . $response->getReasonPhrase() . "- status: " . $response->getStatusCode());
         }
 
 

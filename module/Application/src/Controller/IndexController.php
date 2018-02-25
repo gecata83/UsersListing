@@ -40,7 +40,13 @@ class IndexController extends AbstractActionController
 
         $usersInfo = $this->usersListingService->getResult(9, $recordNumber);
 
-        $viewModel->setVariables($usersInfo);
+        if (empty($usersInfo)) {
+            $viewModel->setVariable("endOfTheList", true);
+        } else {
+            $viewModel->setVariables($usersInfo);
+        }
+
+
         return $viewModel;
     }
 }

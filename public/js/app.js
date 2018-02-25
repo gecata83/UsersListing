@@ -1,16 +1,20 @@
 jQuery( document ).ready(function() {
     function handleError(e) {
-        this.src='../img/rsz_404-logo.jpg';
+        this.src='../img/rsz_not-found.png';
     }
 
     var loadMoreUrl = jQuery("#loadMore").data('url');
 
     jQuery("img").on('error', handleError);
 
+    var reachTheEnd = false;
+    var unfinishedRequest = false;
+
     jQuery(window).on("scroll", function() {
         var scrollHeight = jQuery(document).height();
         var scrollPosition = jQuery(window).height() + jQuery(window).scrollTop();
-        if ((scrollHeight - scrollPosition) / scrollHeight === 0) {
+        if ((scrollHeight - scrollPosition) / scrollHeight === 0 && reachTheEnd == false && unfinishedRequest == false) {
+            unfinishedRequest = true;
             jQuery.ajax({
                 type: "GET",
                 url: loadMoreUrl,
@@ -19,6 +23,11 @@ jQuery( document ).ready(function() {
                     var threeRecordPerRow = 0;
                     var divRow = jQuery('<div class="row record-per-row" />');
                     jQuery.each(returnData, function() {
+                        if (returnData.endOfTheList === true) {
+                            reachTheEnd = true;
+                            return;
+                        }
+
                         threeRecordPerRow += 1;
                         var avatar = this.avatar;
                         if (avatar === "0") {
@@ -51,7 +60,15 @@ jQuery( document ).ready(function() {
                             threeRecordPerRow = 0;
                         }
                     });
+
+                    if (threeRecordPerRow != 0) {
+                        jQuery(".record-per-row").last().after(divRow);
+                        divRow = jQuery('<div class="row record-per-row" />');
+                        threeRecordPerRow = 0;
+                    }
                 }
+            }).always(function() {
+                unfinishedRequest=false;
             });
         }
     });
